@@ -8,8 +8,8 @@
       <textarea ref="textarea" class="input editor__desc" @input="resizeTextarea" v-model.trim="task.desc" placeholder="Add a description..."></textarea>
 
       <div class="editor__subtasks">
+        <Task v-for="subtask in task.subtasks" :subtask="subtask" />
         <Task subtask create @createTask="createSubtask" />
-        <Task v-for="subtask in task.subtasks.slice().reverse()" :subtask="subtask" />
       </div>
 
       <div class="editor__actions">
