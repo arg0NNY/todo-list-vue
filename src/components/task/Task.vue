@@ -138,6 +138,7 @@ function createTask() {
     box-shadow: none;
     padding: 0;
     gap: 15px;
+    cursor: default;
     &:hover {
       background: transparent;
     }

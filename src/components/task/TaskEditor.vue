@@ -24,7 +24,7 @@ import Checkbox from "@/components/general/Checkbox.vue"
 import {onBeforeMount, onMounted, ref} from "vue"
 import Task from "@/components/task/Task.vue"
 import BaseButton from "@/components/general/BaseButton.vue"
-import IconTrash from "@/components/icons/IconTrash.vue";
+import IconTrash from "@/components/icons/IconTrash.vue"
 
 const props = defineProps({
   task: {
