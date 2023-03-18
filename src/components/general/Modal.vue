@@ -7,7 +7,15 @@
 </template>
 
 <script setup>
+import {useScrollLock} from "@vueuse/core"
+import {onBeforeUnmount, onMounted} from "vue"
+
 const emit = defineEmits(['close'])
+
+const isLocked = useScrollLock(document.body)
+
+onMounted(() => isLocked.value = true)
+onBeforeUnmount(() => isLocked.value = false)
 </script>
 
 <style scoped lang="scss">
