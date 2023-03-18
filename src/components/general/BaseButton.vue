@@ -55,5 +55,18 @@ const classes = computed(() => ['danger', 'primary'].filter(i => !!props[i]).map
   &:active {
     filter: brightness(.95);
   }
+
+  @include mobile {
+    border-radius: 7px;
+    padding: 0 10px;
+    height: 30px;
+    font-size: 14px;
+    gap: 5px;
+
+    .icon {
+      width: 16px;
+      height: 16px;
+    }
+  }
 }
 </style>

@@ -56,6 +56,8 @@ onMounted(() => resizeTextarea())
 </script>
 
 <style scoped lang="scss">
+@import "@/assets/css/_includes.scss";
+
 .editor {
   display: flex;
   gap: 20px;
@@ -92,6 +94,28 @@ onMounted(() => resizeTextarea())
   &--done {
     .editor__title {
       text-decoration: line-through;
+    }
+  }
+
+  @include mobile {
+    gap: 10px;
+
+    &__sidebar {
+      padding-top: 1px;
+    }
+    &__title {
+      font-size: 18px;
+    }
+    &__desc {
+      margin-top: 7px;
+    }
+    &__subtasks {
+      margin-top: 15px;
+      gap: 10px;
+    }
+    &__actions {
+      margin-top: 15px;
+      gap: 5px;
     }
   }
 }

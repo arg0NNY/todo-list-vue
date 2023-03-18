@@ -136,7 +136,7 @@ function createTask() {
   &--subtask {
     background: transparent;
     box-shadow: none;
-    padding: 0;
+    padding: 0 !important;
     gap: 15px;
     cursor: default;
     &:hover {
@@ -145,6 +145,19 @@ function createTask() {
 
     .task__title {
       font-weight: 400;
+    }
+  }
+
+  @include mobile {
+    padding: 10px;
+    border-radius: 5px;
+    gap: 10px;
+
+    &__desc {
+      margin-top: 5px;
+    }
+    &__bottom {
+      margin-top: 10px;
     }
   }
 }

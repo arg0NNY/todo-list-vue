@@ -36,5 +36,11 @@ const emit = defineEmits(['close'])
   overflow-x: hidden;
   overflow-y: auto;
   z-index: 100000;
+
+  @include mobile {
+    border-radius: 10px;
+    padding: 15px;
+    width: calc(100% - 30px);
+  }
 }
 </style>

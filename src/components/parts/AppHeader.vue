@@ -44,5 +44,19 @@ header {
       color: $elements-secondary;
     }
   }
+
+  @include mobile {
+    margin-top: 40px;
+    margin-bottom: 20px;
+
+    .header {
+      &__title {
+        font-size: 24px;
+      }
+      &__subtitle {
+        margin-top: 5px;
+      }
+    }
+  }
 }
 </style>

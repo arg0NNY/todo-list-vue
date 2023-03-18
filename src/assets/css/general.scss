@@ -1,4 +1,5 @@
 @import "variables";
+@import "breakpoints";
 
 *, *::before, *::after {
   font-family: 'Inter', sans-serif;
@@ -12,6 +13,11 @@ body {
   color: $elements-primary;
   font-size: 16px;
   padding-bottom: 80px;
+
+  @include mobile {
+    font-size: 14px;
+    padding-bottom: 40px;
+  }
 }
 
 .container {
@@ -19,6 +25,10 @@ body {
   box-sizing: content-box;
   padding: 0 20px;
   margin: 0 auto;
+
+  @include mobile {
+    padding: 0 10px;
+  }
 }
 
 .input {
@@ -34,6 +44,10 @@ body {
   }
   &:focus {
     outline: none;
+  }
+
+  @include mobile {
+    font-size: 14px;
   }
 }
 

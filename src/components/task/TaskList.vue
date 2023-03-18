@@ -26,9 +26,15 @@ function removeTask(id) {
 </script>
 
 <style scoped lang="scss">
+@import "@/assets/css/_includes.scss";
+
 .task-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  @include mobile {
+    gap: 5px;
+  }
 }
 </style>

@@ -58,5 +58,10 @@ function uploadTasks() {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
+
+  @include mobile {
+    margin-top: 10px;
+    gap: 5px;
+  }
 }
 </style>
