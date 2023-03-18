@@ -35,5 +35,6 @@ const emit = defineEmits(['close'])
   max-height: 90vh;
   overflow-x: hidden;
   overflow-y: auto;
+  z-index: 100000;
 }
 </style>
