@@ -8,8 +8,8 @@
       </div>
       <div class="task__content">
         <form @submit.prevent="createTask">
-          <input v-if="create" ref="input" v-model.trim="inputValue" type="text" class="input task__title" :placeholder="`Add a new ${subtask ? 'subtask' : 'task'}...`">
-          <input v-else ref="input" v-model.trim="subtask.title" type="text" class="input task__title" :placeholder="`Add a title...`">
+          <TextareaAutoresize v-if="create" ref="input" rows="1" v-model.trim="inputValue" type="text" class="input task__title" :placeholder="`Add a new ${subtask ? 'subtask' : 'task'}...`" />
+          <TextareaAutoresize v-else ref="input" rows="1" v-model.trim="subtask.title" type="text" class="input task__title" :placeholder="`Add a title...`" />
         </form>
       </div>
     </template>
@@ -46,6 +46,7 @@ import {useFocus} from "@vueuse/core"
 import {ref, watch} from "vue"
 import Modal from "@/components/general/Modal.vue"
 import TaskEditor from "@/components/task/TaskEditor.vue"
+import TextareaAutoresize from "@/components/general/TextareaAutoresize.vue";
 
 const props = defineProps({
   task: Object,

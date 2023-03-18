@@ -4,8 +4,8 @@
       <Checkbox v-model="task.done" />
     </div>
     <div class="editor__content">
-      <input type="text" class="input editor__title" v-model.trim="task.title" placeholder="Add a title...">
-      <textarea ref="textarea" class="input editor__desc" @input="resizeTextarea" v-model.trim="task.desc" placeholder="Add a description..."></textarea>
+      <TextareaAutoresize class="input editor__title" rows="1" v-model.trim="task.title" placeholder="Add a title..." />
+      <TextareaAutoresize class="input editor__desc" rows="2" v-model.trim="task.desc" placeholder="Add a description..." />
 
       <div class="editor__subtasks">
         <Task v-for="subtask in task.subtasks" :subtask="subtask" />
@@ -21,10 +21,11 @@
 
 <script setup>
 import Checkbox from "@/components/general/Checkbox.vue"
-import {onBeforeMount, onMounted, ref} from "vue"
+import {onBeforeMount} from "vue"
 import Task from "@/components/task/Task.vue"
 import BaseButton from "@/components/general/BaseButton.vue"
 import IconTrash from "@/components/icons/IconTrash.vue"
+import TextareaAutoresize from "@/components/general/TextareaAutoresize.vue"
 
 const props = defineProps({
   task: {
@@ -41,18 +42,9 @@ function createSubtask(task) {
   })
 }
 
-const textarea = ref()
-function resizeTextarea() {
-  if (!textarea.value) return
-  textarea.value.style.height = "40px"
-  textarea.value.style.height = textarea.value.scrollHeight + "px"
-}
-
 onBeforeMount(() => {
   props.task.desc = props.task.desc ?? ''
 })
-
-onMounted(() => resizeTextarea())
 </script>
 
 <style scoped lang="scss">
@@ -75,7 +67,6 @@ onMounted(() => resizeTextarea())
   }
   &__desc {
     margin-top: 10px;
-    resize: none;
   }
   &__subtasks {
     margin-top: 30px;
