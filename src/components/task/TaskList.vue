@@ -1,8 +1,8 @@
 <template>
-  <div class="task-list">
-    <Task create @createTask="addTask" />
+  <TransitionGroup tag="div" name="task-list" class="task-list">
+    <Task create @createTask="addTask" key="create" />
     <Task v-for="task in tasks.slice().reverse()" :key="task.id" :task="task" @remove="removeTask" />
-  </div>
+  </TransitionGroup>
 </template>
 
 <script setup>
@@ -29,12 +29,30 @@ function removeTask(id) {
 @import "@/assets/css/_includes.scss";
 
 .task-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  position: relative;
 
-  @include mobile {
-    gap: 5px;
+  & > *:not(:last-child) {
+    margin-bottom: 10px;
+
+    @include mobile {
+      margin-bottom: 5px;
+    }
   }
+}
+
+.task-list-enter-active, .task-list-leave-active, .task-list-move {
+  transition: .3s all;
+}
+.task-list-leave-active {
+  position: absolute;
+}
+.task-list-enter-from {
+  transform: translateY(-70px);
+  @include mobile {
+    transform: translateY(-45px);
+  }
+}
+.task-list-leave-to {
+  opacity: 0;
 }
 </style>
