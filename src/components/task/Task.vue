@@ -140,13 +140,19 @@ function createTask() {
     padding: 0 !important;
     gap: 15px;
     cursor: default;
-    align-items: center;
+    margin-top: -1px;
     &:hover {
       background: transparent;
     }
 
     .task__title {
       font-weight: 400;
+    }
+
+    @include mobile {
+      .task__content {
+        margin-top: 1px;
+      }
     }
   }
 

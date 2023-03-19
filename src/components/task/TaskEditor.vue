@@ -5,7 +5,7 @@
     </div>
     <div class="editor__content">
       <TextareaAutoresize class="input modal__title" rows="1" v-model.trim="task.title" placeholder="Add a title..." />
-      <TextareaAutoresize class="input modal__desc" rows="2" v-model.trim="task.desc" placeholder="Add a description..." />
+      <TextareaAutoresize class="input modal__desc" allow-linebreaks rows="2" v-model.trim="task.desc" placeholder="Add a description..." />
 
       <div class="editor__subtasks">
         <Task v-for="subtask in task.subtasks" :subtask="subtask" />
