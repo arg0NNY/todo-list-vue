@@ -58,10 +58,18 @@ if (!props.submodal) {
   justify-content: center;
   align-items: center;
   color: $background-secondary;
+  transition: .2s opacity;
 
   .icon {
     width: 20px;
     height: 20px;
+  }
+
+  &:hover {
+    opacity: .6;
+  }
+  &:active {
+    opacity: .4;
   }
 }
 
