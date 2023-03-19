@@ -87,8 +87,8 @@ if (!props.submodal) {
   }
 
   &__title {
-    font-size: 24px;
-    font-weight: 700;
+    font-size: 24px !important;
+    font-weight: 700 !important;
   }
   &__desc {
     margin-top: 10px;
