@@ -140,6 +140,7 @@ function createTask() {
     padding: 0 !important;
     gap: 15px;
     cursor: default;
+    align-items: center;
     &:hover {
       background: transparent;
     }

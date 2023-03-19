@@ -3,7 +3,12 @@
     <div class="modal">
       <button class="modal-close-btn" @click="emit('close')"><IconX/></button>
       <div class="modal__content">
-        <slot />
+        <template v-if="common">
+          <div class="modal__title"><slot name="title" /></div>
+          <div class="modal__desc"><slot /></div>
+          <div class="modal__actions"><slot name="actions" /></div>
+        </template>
+        <slot v-else />
       </div>
     </div>
   </div>
@@ -14,15 +19,22 @@ import {useScrollLock} from "@vueuse/core"
 import {onBeforeUnmount, onMounted} from "vue"
 import IconX from "@/components/icons/IconX.vue"
 
+const props = defineProps({
+  common: Boolean,
+  submodal: Boolean
+})
+
 const emit = defineEmits(['close'])
 
-const isLocked = useScrollLock(document.body)
+if (!props.submodal) {
+  const isLocked = useScrollLock(document.body)
 
-onMounted(() => isLocked.value = true)
-onBeforeUnmount(() => isLocked.value = false)
+  onMounted(() => isLocked.value = true)
+  onBeforeUnmount(() => isLocked.value = false)
+}
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 @import "@/assets/css/_includes.scss";
 
 .modal-container {
@@ -74,12 +86,37 @@ onBeforeUnmount(() => isLocked.value = false)
     box-shadow: 0 67px 27px rgba(0, 0, 0, 0.01), 0 37px 22px rgba(0, 0, 0, 0.05), 0 17px 17px rgba(0, 0, 0, 0.09), 0 4px 9px rgba(0, 0, 0, 0.1), 0 0 0 rgba(0, 0, 0, 0.1);
   }
 
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+  }
+  &__desc {
+    margin-top: 10px;
+  }
+  &__actions {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 10px;
+  }
+
   @include mobile {
     width: calc(100% - 30px);
 
     &__content {
       border-radius: 10px;
       padding: 15px;
+    }
+    &__title {
+      font-size: 18px;
+    }
+    &__desc {
+      margin-top: 7px;
+    }
+    &__actions {
+      margin-top: 15px;
+      gap: 5px;
     }
   }
 }
