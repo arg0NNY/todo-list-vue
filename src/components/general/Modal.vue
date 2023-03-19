@@ -109,7 +109,7 @@ if (!props.submodal) {
       padding: 15px;
     }
     &__title {
-      font-size: 18px;
+      font-size: 18px !important;
     }
     &__desc {
       margin-top: 7px;
