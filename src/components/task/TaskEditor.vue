@@ -8,7 +8,7 @@
       <TextareaAutoresize class="input modal__desc" allow-linebreaks rows="2" v-model.trim="task.desc" placeholder="Add a description..." />
 
       <div class="editor__subtasks">
-        <Task v-for="subtask in task.subtasks" :subtask="subtask" />
+        <Task v-for="(subtask, i) in task.subtasks" v-model:subtask="task.subtasks[i]" />
         <Task subtask create @createTask="createSubtask" />
       </div>
 
@@ -34,7 +34,7 @@
 
 <script setup>
 import Checkbox from "@/components/general/Checkbox.vue"
-import {onBeforeMount, ref} from "vue"
+import {computed, onBeforeMount, ref} from "vue"
 import Task from "@/components/task/Task.vue"
 import BaseButton from "@/components/general/BaseButton.vue"
 import IconTrash from "@/components/icons/IconTrash.vue"
@@ -42,24 +42,29 @@ import TextareaAutoresize from "@/components/general/TextareaAutoresize.vue"
 import Modal from "@/components/general/Modal.vue"
 
 const props = defineProps({
-  task: {
+  modelValue: {
     type: Object,
     required: true
   }
 })
-const emit = defineEmits(['remove'])
+const emit = defineEmits(['update:modelValue', 'remove'])
+
+const task = computed({
+  get: () => props.modelValue,
+  set: value => emit('update:modelValue', value)
+})
 
 const modal = ref(false)
 
-function createSubtask(task) {
-  props.task.subtasks.push({
-    title: task.title,
+function createSubtask(data) {
+  task.value.subtasks.push({
+    title: data.title,
     done: false
   })
 }
 
 onBeforeMount(() => {
-  props.task.desc = props.task.desc ?? ''
+  task.value.desc = task.value.desc ?? ''
 })
 </script>
 

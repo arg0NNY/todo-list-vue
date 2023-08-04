@@ -29,7 +29,7 @@
       <Teleport to="body">
         <Transition name="modal">
           <Modal v-if="modal" @close="modal = false">
-            <TaskEditor :task="task" @remove="emit('remove', task.id)" />
+            <TaskEditor v-model="task" @remove="emit('remove', task.id)" />
           </Modal>
         </Transition>
       </Teleport>
@@ -43,10 +43,10 @@ import Checkbox from "@/components/general/Checkbox.vue"
 import Chip from "@/components/general/Chip.vue"
 import IconList from "@/components/icons/IconList.vue"
 import {useFocus} from "@vueuse/core"
-import {ref, watch} from "vue"
+import {computed, ref, watch} from "vue"
 import Modal from "@/components/general/Modal.vue"
 import TaskEditor from "@/components/task/TaskEditor.vue"
-import TextareaAutoresize from "@/components/general/TextareaAutoresize.vue";
+import TextareaAutoresize from "@/components/general/TextareaAutoresize.vue"
 
 const props = defineProps({
   task: Object,
@@ -56,7 +56,16 @@ const props = defineProps({
     default: false
   }
 })
-const emit = defineEmits(['createTask', 'remove'])
+const emit = defineEmits(['update:task', 'update:subtask', 'createTask', 'remove'])
+
+const task = computed({
+  get: () => props.task,
+  set: value => emit('update:task', value)
+})
+const subtask = computed({
+  get: () => props.subtask,
+  set: value => emit('update:subtask', value)
+})
 
 const input = ref()
 const inputValue = ref('')
