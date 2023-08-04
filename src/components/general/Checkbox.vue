@@ -1,12 +1,13 @@
 <template>
-  <button class="checkbox" :class="{ 'checkbox--checked': model }" @click.stop="model = !model">
+  <input :id="instance.uid" type="checkbox" v-model="model" @click.stop>
+  <label :for="instance.uid" class="checkbox" @click.stop>
     <IconCheck class="checkbox__check" />
-  </button>
+  </label>
 </template>
 
 <script setup>
 import IconCheck from "@/components/icons/IconCheck.vue"
-import {computed} from "vue";
+import {computed, getCurrentInstance} from "vue"
 
 const props = defineProps({
   modelValue: Boolean
@@ -17,6 +18,8 @@ const model = computed({
   get: () => props.modelValue ?? false,
   set: value => emit('update:modelValue', value)
 })
+
+const instance = getCurrentInstance()
 </script>
 
 <style scoped lang="scss">
@@ -41,6 +44,18 @@ const model = computed({
   }
 
   &--checked {
+    background: $accent-primary;
+    border-color: $accent-primary;
+    .checkbox__check {
+      opacity: 1;
+    }
+  }
+}
+
+input {
+  display: none;
+
+  &:checked + .checkbox {
     background: $accent-primary;
     border-color: $accent-primary;
     .checkbox__check {

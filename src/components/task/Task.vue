@@ -137,6 +137,9 @@ function createTask() {
     &:hover {
       background: $background-secondary;
     }
+    .task__sidebar {
+      pointer-events: none;
+    }
   }
   &--create:not(&--creating) {
     background: transparent;
